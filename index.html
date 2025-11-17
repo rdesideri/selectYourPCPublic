@@ -7,281 +7,58 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#0F2942',
+              light: '#1E88E5',
+            },
+            accent: {
+              orange: '#FF8A3C',
+            },
+            bg: {
+              main: '#F3F5F9',
+              card: '#FFFFFF',
+            },
+            text: {
+              main: '#101828',
+              muted: '#6B7280',
+            },
+          },
+          boxShadow: {
+            soft: '0 10px 40px rgba(15, 28, 46, 0.12)',
+            card: '0 6px 18px rgba(15, 28, 46, 0.07)',
+          },
+          fontFamily: {
+            inter: ['Inter', 'system-ui', 'sans-serif'],
+            poppins: ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
   <style>
-    :root {
-      --blue: #1E8DF2;
-      --nav: #0F1C2E;
-      --bg: #F5F7FA;
-      --white: #FFFFFF;
-      --muted: #A8B0B8;
-      --lamp-on: #F6C744;
-      --border: #ECEFF1;
-      --shadow: 0 10px 40px rgba(15, 28, 46, 0.12);
-      color-scheme: light;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: #1c2533;
-      min-height: 100vh;
-      display: flex;
-    }
-
-    /* Estrutura principal em duas colunas */
-    .sidebar {
-      width: 270px;
-      min-height: 100vh;
-      background: var(--nav);
-      color: var(--white);
-      padding: 28px 22px;
-      position: sticky;
-      top: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-
-    .logo {
-      font-family: 'Poppins', 'Inter', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .filters h2 {
-      font-family: 'Poppins', 'Inter', sans-serif;
-      font-size: 16px;
-      margin: 0 0 16px;
-    }
-
-    .filter-group {
-      display: grid;
-      gap: 12px;
-    }
-
-    label {
-      font-size: 13px;
-      color: #dbe2ec;
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    select, input[type="text"] {
-      width: 100%;
-      padding: 10px 12px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--white);
-      font-size: 14px;
-      outline: none;
-    }
-
-    .price-range {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .main-content {
-      flex: 1;
-      padding: 32px 36px;
-      display: grid;
-      gap: 28px;
-    }
-
-    /* Header com lâmpada + slogan */
-    .hero {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      background: var(--white);
-      border-radius: 16px;
-      padding: 18px 20px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
-    .lamp {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      background: #E3E7EE;
-      transition: background 300ms ease, box-shadow 300ms ease, transform 300ms ease;
-    }
-
-    .lamp svg {
-      width: 30px;
-      height: 30px;
-      fill: #A8B0B8;
-      transition: fill 300ms ease;
-    }
-
-    .lamp.on {
-      background: #FFF7DF;
-      box-shadow: 0 0 0 6px rgba(246, 199, 68, 0.2), 0 12px 30px rgba(246, 199, 68, 0.45);
-      transform: translateY(-2px);
-    }
-
-    .lamp.on svg { fill: var(--lamp-on); }
-
-    .hero-text { line-height: 1.4; }
-
-    .hero-title {
-      font-family: 'Poppins', 'Inter', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      margin: 0;
-    }
-
-    .hero-sub {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* Caixa de busca principal */
-    .search-box {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-    }
-
-    .search-form {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      transition: transform 180ms ease;
-    }
-
-    .search-input {
-      flex: 1;
-      padding: 16px 18px;
-      border-radius: 12px;
-      border: 2px solid transparent;
-      background: #f8f9fb;
-      font-size: 16px;
-      transition: all 180ms ease;
-    }
-
-    .search-input:focus {
-      border-color: var(--blue);
-      background: var(--white);
-      box-shadow: 0 0 0 4px rgba(30, 141, 242, 0.12);
-      transform: translateY(-1px);
-    }
-
-    .search-button {
-      background: var(--blue);
-      color: var(--white);
-      border: none;
-      padding: 14px 18px;
-      border-radius: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: var(--shadow);
-      transition: transform 160ms ease, box-shadow 160ms ease;
-    }
-
-    .search-button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 24px rgba(30, 141, 242, 0.25);
-    }
-
-    /* Grade de cards */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      background: var(--white);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      padding: 16px;
-      box-shadow: 0 6px 18px rgba(15, 28, 46, 0.07);
-      display: grid;
-      gap: 10px;
-      min-height: 180px;
-    }
-
-    .card h3 {
-      margin: 0;
-      font-family: 'Poppins', 'Inter', sans-serif;
-      font-size: 16px;
-    }
-
-    .specs {
-      margin: 0;
-      color: #415065;
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(30, 141, 242, 0.1);
-      color: var(--blue);
-      font-weight: 600;
-      font-size: 12px;
-      width: fit-content;
-    }
-
-    .card button {
-      justify-self: start;
-      background: transparent;
-      border: 1px solid var(--blue);
-      color: var(--blue);
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 140ms ease;
-    }
-
-    .card button:hover { background: rgba(30, 141, 242, 0.1); }
-
-    /* Responsividade */
-    @media (max-width: 960px) {
-      body { flex-direction: column; }
-      .sidebar {
-        width: 100%;
-        position: static;
-        border-radius: 0 0 18px 18px;
-        min-height: auto;
-      }
-      .main-content { padding: 24px; }
-    }
-
-    @media (max-width: 640px) {
-      .search-form { flex-direction: column; align-items: stretch; }
-      .search-button { width: 100%; }
-      .hero { align-items: flex-start; }
-    }
+    /* Ajustes finos que complementam o Tailwind */
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .focus-ring:focus { outline: none; box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.2); }
   </style>
 </head>
-<body>
-  <!-- Coluna esquerda: menu de filtros -->
-  <aside class="sidebar">
-    <div class="logo">SelectYourPC</div>
-    <div class="filters">
-      <h2>Filtros</h2>
-      <div class="filter-group">
-        <div>
-          <label for="marca">Marca</label>
-          <select id="marca">
+<body class="bg-bg-main text-text-main min-h-screen flex">
+  <aside class="w-[270px] min-h-screen bg-primary text-white p-7 md:p-6 sticky top-0 flex flex-col gap-7">
+    <div class="flex items-center gap-3 font-poppins text-lg font-bold tracking-tight">
+      <img src="assets/logo-selectyourpc.png" alt="Logo SelectYourPC" class="h-10 w-auto" />
+      <span class="flex gap-1 items-baseline">SelectYour<span class="text-accent-orange">PC</span></span>
+    </div>
+    <div class="space-y-5">
+      <h2 class="font-poppins text-base m-0">Filtros</h2>
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <label for="marca" class="text-sm text-slate-100 block">Marca</label>
+          <select id="marca" class="w-full rounded-lg border border-white/20 bg-white/10 text-white text-sm px-3 py-2 focus-ring">
             <option>Dell</option>
             <option>Acer</option>
             <option>Lenovo</option>
@@ -289,16 +66,16 @@
             <option>Samsung</option>
           </select>
         </div>
-        <div>
-          <label>Faixa de preço</label>
-          <div class="price-range">
-            <input type="text" placeholder="Mín." aria-label="Preço mínimo">
-            <input type="text" placeholder="Máx." aria-label="Preço máximo">
+        <div class="space-y-2">
+          <label class="text-sm text-slate-100 block">Faixa de preço</label>
+          <div class="grid grid-cols-2 gap-2">
+            <input type="text" placeholder="Mín." aria-label="Preço mínimo" class="w-full rounded-lg border border-white/20 bg-white/10 text-white text-sm px-3 py-2 focus-ring" />
+            <input type="text" placeholder="Máx." aria-label="Preço máximo" class="w-full rounded-lg border border-white/20 bg-white/10 text-white text-sm px-3 py-2 focus-ring" />
           </div>
         </div>
-        <div>
-          <label for="uso">Uso</label>
-          <select id="uso">
+        <div class="space-y-2">
+          <label for="uso" class="text-sm text-slate-100 block">Uso</label>
+          <select id="uso" class="w-full rounded-lg border border-white/20 bg-white/10 text-white text-sm px-3 py-2 focus-ring">
             <option>Estudo</option>
             <option>Home Office</option>
             <option>Games</option>
@@ -306,9 +83,9 @@
             <option>Data Science</option>
           </select>
         </div>
-        <div>
-          <label for="gpu">GPU</label>
-          <select id="gpu">
+        <div class="space-y-2">
+          <label for="gpu" class="text-sm text-slate-100 block">GPU</label>
+          <select id="gpu" class="w-full rounded-lg border border-white/20 bg-white/10 text-white text-sm px-3 py-2 focus-ring">
             <option>Integrada</option>
             <option>Dedicada</option>
           </select>
@@ -317,76 +94,59 @@
     </div>
   </aside>
 
-  <!-- Coluna central/direita: conteúdo principal -->
-  <main class="main-content">
-    <header class="hero">
-      <!-- Lâmpada: começa apagada (classe off padrão) -->
-      <div class="lamp" id="lampIcon" aria-label="Lâmpada de destaque">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M9 21h6v-1H9v1zm3-19a7 7 0 00-4.95 11.95c.48.48.95 1.41.95 2.05v.5h8v-.5c0-.64.47-1.57.95-2.05A7 7 0 0012 2zm0 12.5h-1v-1h1v1zm2 0h-1v-1h1v1zm1-2.75H8a5.5 5.5 0 1110 0z" />
-        </svg>
-      </div>
-      <div class="hero-text">
-        <p class="hero-title">A luz certa para a escolha do seu próximo notebook.</p>
-        <p class="hero-sub">Pesquise, compare e descubra o modelo ideal sem complicação.</p>
-      </div>
+  <main class="flex-1 p-9 md:p-8 space-y-6">
+    <header class="flex justify-center py-6 bg-white rounded-2xl">
+      <img src="assets/logo-selectyourpc.png" alt="Logo SelectYourPC" class="h-14 w-auto" />
     </header>
 
-    <section class="search-box">
-      <form class="search-form" id="searchForm">
-        <input class="search-input" id="searchInput" type="text" placeholder="Digite o que você procura: ex. notebook para home office, games, estudos..." aria-label="Buscar notebooks" required>
-        <button class="search-button" type="submit">Buscar</button>
+    <section class="bg-white rounded-2xl p-5 shadow-soft border border-slate-200">
+      <form class="flex flex-col gap-3 sm:flex-row sm:items-center" id="searchForm">
+        <input id="searchInput" type="text" placeholder="Digite o que você procura: ex. notebook para home office, games, estudos..." aria-label="Buscar notebooks" required class="flex-1 rounded-xl border-2 border-transparent bg-slate-50 px-4 py-4 text-base text-text-main transition focus:border-primary-light focus:bg-white focus:ring-4 focus:ring-primary-light/20" />
+        <button type="submit" class="bg-primary text-white px-4 py-3 rounded-xl font-semibold shadow-soft transition hover:-translate-y-0.5 hover:bg-primary-light">Buscar</button>
       </form>
     </section>
 
-    <section class="cards-grid" aria-label="Notebooks em destaque">
-      <article class="card">
-        <h3>Acer Nitro V15</h3>
-        <p class="specs">Intel Core i7 13620H · RTX 4050 · 16GB RAM · SSD 512GB</p>
-        <span class="tag">Games</span>
-        <button type="button">Ver detalhes</button>
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" aria-label="Notebooks em destaque">
+      <article class="bg-bg-card rounded-xl border border-slate-200 p-4 shadow-card grid gap-2">
+        <h3 class="font-poppins text-lg m-0">Acer Nitro V15</h3>
+        <p class="text-text-muted leading-relaxed">Intel Core i7 13620H · RTX 4050 · 16GB RAM · SSD 512GB</p>
+        <span class="inline-flex items-center px-3 py-1 rounded-full bg-accent-orange/15 text-accent-orange font-semibold text-xs w-fit">Games</span>
+        <button type="button" class="justify-self-start bg-primary-light/10 border border-primary-light text-primary-light px-3 py-2 rounded-lg font-semibold transition hover:bg-primary-light/20">Ver detalhes</button>
       </article>
-      <article class="card">
-        <h3>Dell Inspiron 15</h3>
-        <p class="specs">Intel Core i5 1240P · Iris Xe · 16GB RAM · SSD 512GB</p>
-        <span class="tag">Home Office</span>
-        <button type="button">Ver detalhes</button>
+      <article class="bg-bg-card rounded-xl border border-slate-200 p-4 shadow-card grid gap-2">
+        <h3 class="font-poppins text-lg m-0">Dell Inspiron 15</h3>
+        <p class="text-text-muted leading-relaxed">Intel Core i5 1240P · Iris Xe · 16GB RAM · SSD 512GB</p>
+        <span class="inline-flex items-center px-3 py-1 rounded-full bg-accent-orange/15 text-accent-orange font-semibold text-xs w-fit">Home Office</span>
+        <button type="button" class="justify-self-start bg-primary-light/10 border border-primary-light text-primary-light px-3 py-2 rounded-lg font-semibold transition hover:bg-primary-light/20">Ver detalhes</button>
       </article>
-      <article class="card">
-        <h3>Lenovo IdeaPad 3i</h3>
-        <p class="specs">Intel Core i3 1215U · UHD Graphics · 8GB RAM · SSD 256GB</p>
-        <span class="tag">Estudos</span>
-        <button type="button">Ver detalhes</button>
+      <article class="bg-bg-card rounded-xl border border-slate-200 p-4 shadow-card grid gap-2">
+        <h3 class="font-poppins text-lg m-0">Lenovo IdeaPad 3i</h3>
+        <p class="text-text-muted leading-relaxed">Intel Core i3 1215U · UHD Graphics · 8GB RAM · SSD 256GB</p>
+        <span class="inline-flex items-center px-3 py-1 rounded-full bg-accent-orange/15 text-accent-orange font-semibold text-xs w-fit">Estudos</span>
+        <button type="button" class="justify-self-start bg-primary-light/10 border border-primary-light text-primary-light px-3 py-2 rounded-lg font-semibold transition hover:bg-primary-light/20">Ver detalhes</button>
       </article>
-      <article class="card">
-        <h3>Asus Vivobook Pro 16</h3>
-        <p class="specs">AMD Ryzen 7 5800H · RTX 3050 · 16GB RAM · SSD 1TB</p>
-        <span class="tag">Edição de Vídeo</span>
-        <button type="button">Ver detalhes</button>
+      <article class="bg-bg-card rounded-xl border border-slate-200 p-4 shadow-card grid gap-2">
+        <h3 class="font-poppins text-lg m-0">Asus Vivobook Pro 16</h3>
+        <p class="text-text-muted leading-relaxed">AMD Ryzen 7 5800H · RTX 3050 · 16GB RAM · SSD 1TB</p>
+        <span class="inline-flex items-center px-3 py-1 rounded-full bg-accent-orange/15 text-accent-orange font-semibold text-xs w-fit">Edição de Vídeo</span>
+        <button type="button" class="justify-self-start bg-primary-light/10 border border-primary-light text-primary-light px-3 py-2 rounded-lg font-semibold transition hover:bg-primary-light/20">Ver detalhes</button>
       </article>
-      <article class="card">
-        <h3>Samsung Galaxy Book3</h3>
-        <p class="specs">Intel Core i7 1355U · Iris Xe · 16GB RAM · SSD 512GB</p>
-        <span class="tag">Home Office</span>
-        <button type="button">Ver detalhes</button>
+      <article class="bg-bg-card rounded-xl border border-slate-200 p-4 shadow-card grid gap-2">
+        <h3 class="font-poppins text-lg m-0">Samsung Galaxy Book3</h3>
+        <p class="text-text-muted leading-relaxed">Intel Core i7 1355U · Iris Xe · 16GB RAM · SSD 512GB</p>
+        <span class="inline-flex items-center px-3 py-1 rounded-full bg-accent-orange/15 text-accent-orange font-semibold text-xs w-fit">Home Office</span>
+        <button type="button" class="justify-self-start bg-primary-light/10 border border-primary-light text-primary-light px-3 py-2 rounded-lg font-semibold transition hover:bg-primary-light/20">Ver detalhes</button>
       </article>
-      <article class="card">
-        <h3>MSI Cyborg 15</h3>
-        <p class="specs">Intel Core i7 12650H · RTX 4060 · 16GB RAM · SSD 512GB</p>
-        <span class="tag">Games</span>
-        <button type="button">Ver detalhes</button>
+      <article class="bg-bg-card rounded-xl border border-slate-200 p-4 shadow-card grid gap-2">
+        <h3 class="font-poppins text-lg m-0">MSI Cyborg 15</h3>
+        <p class="text-text-muted leading-relaxed">Intel Core i7 12650H · RTX 4060 · 16GB RAM · SSD 512GB</p>
+        <span class="inline-flex items-center px-3 py-1 rounded-full bg-accent-orange/15 text-accent-orange font-semibold text-xs w-fit">Games</span>
+        <button type="button" class="justify-self-start bg-primary-light/10 border border-primary-light text-primary-light px-3 py-2 rounded-lg font-semibold transition hover:bg-primary-light/20">Ver detalhes</button>
       </article>
     </section>
   </main>
 
   <script>
-    // Animação da lâmpada: liga após 1.5s do carregamento
-    document.addEventListener('DOMContentLoaded', () => {
-      const lamp = document.getElementById('lampIcon');
-      setTimeout(() => lamp.classList.add('on'), 1500);
-    });
-
-    // Comportamento da busca: apenas loga o texto digitado
     const searchForm = document.getElementById('searchForm');
     const searchInput = document.getElementById('searchInput');
 
